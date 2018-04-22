@@ -1,0 +1,19 @@
+// SPECS FOR A Confed Cruiser
+
+// How many images
+nFrames 35
+
+// How many degrees per image
+DeltaDegs 10
+
+// The frames' file extensions
+Extension .bmp
+
+// The background colour to mask
+Mask 0 255 0
+
+// Flip image when bearing more than 180 degs
+FlipX False
+
+// Size (pixels)
+Size 70

@@ -1,0 +1,7 @@
+Name                            Dedrid
+X                               800
+Y                               -42
+Galaxy                          0
+HyperspaceArriveDistance        10000
+HyperspaceDepartDistance        1000
+Government                      1

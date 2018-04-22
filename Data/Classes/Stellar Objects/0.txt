@@ -1,0 +1,15 @@
+Name                            Earth
+Kind                            0
+System                          0
+X                               -370
+Y                               -570
+Size                            1240
+Image                           0
+SpinSpeed                       0.01
+GravitationalFieldStrength      9.81
+GravGeometricRatio              0.999
+MaxGravityAcceleration          0.1
+DescriptionIndex                1
+// confed = 0
+Government                      0
+Landable                        True

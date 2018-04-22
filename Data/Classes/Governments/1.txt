@@ -1,0 +1,5 @@
+Name           Rebellion
+Species        0
+Rel0           1
+Rel1           2
+Rel2           1

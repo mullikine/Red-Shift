@@ -1,0 +1,15 @@
+Name                            Vlagos
+Kind                            0
+System                          1
+X                               3200
+Y                               400
+Size                            500
+Image                           3
+SpinSpeed                       -0.1
+GravitationalFieldStrength      4
+GravGeometricRatio              0.999
+MaxGravityAcceleration          0.15
+DescriptionIndex                0
+// rebels = 1
+Government                      2
+Landable                        True

@@ -1,0 +1,7 @@
+Name                            Xrima
+X                               743
+Y                               -2242
+Galaxy                          0
+HyperspaceArriveDistance        10000
+HyperspaceDepartDistance        1000
+Government                      -1

@@ -1,0 +1,13 @@
+ClassName           torpedo~launcher
+FireRate            15
+MaxAmmo             15
+ProjectileType      11
+PurchasePrice       7000
+SellingPrice        5000
+RechargeRate        1
+RechargePowerCost   0
+RandomBearingOffset 3
+// False
+Ballistic           False
+// vbKeyShift = 16 (&H10)
+KeyTrigger          16

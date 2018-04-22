@@ -1,0 +1,19 @@
+// SPECS FOR A ROCKET PROJECTILE
+
+// How many images
+nFrames 36
+
+// How many degrees per image per 180 degs
+DeltaDegs 5
+
+// The frames' file extensions
+Extension .bmp
+
+// The background colour to mask
+Mask 0 255 0
+
+// Flip image when bearing more than 180 degs
+FlipX True
+
+// Size (pixels)
+Size 50

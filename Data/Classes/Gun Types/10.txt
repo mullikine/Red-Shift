@@ -1,0 +1,12 @@
+ClassName           Mega~cannon
+FireRate            1
+MaxAmmo             3
+ProjectileType      8
+PurchasePrice       750
+SellingPrice        350
+RechargeRate        8
+RechargePowerCost   6
+RandomBearingOffset 2
+Ballistic           False
+// vbKeySpace = 32 (&H20)
+KeyTrigger          32

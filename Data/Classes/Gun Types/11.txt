@@ -1,0 +1,13 @@
+ClassName           Light~Missile~rack
+FireRate            8
+MaxAmmo             60
+ProjectileType      10
+PurchasePrice       7000
+SellingPrice        5000
+RechargeRate        1
+RechargePowerCost   0
+RandomBearingOffset 3
+// False
+Ballistic           False
+// vbKeyShift = 16 (&H10)
+KeyTrigger          16

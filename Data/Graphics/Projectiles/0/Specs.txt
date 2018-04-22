@@ -1,0 +1,19 @@
+// SPECS FOR ENERGY PROJECTILE
+
+// How many images
+nFrames 1
+
+// How many degrees per image per 180 degs
+DeltaDegs 180
+
+// The frames' file extensions
+Extension .tga
+
+// The background colour to mask
+Mask 0 255 0
+
+// Flip image when bearing more than 180 degs
+FlipX True
+
+// Size (pixels)
+Size 12

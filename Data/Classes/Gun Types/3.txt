@@ -1,0 +1,12 @@
+ClassName           Laser~cannon
+FireRate            1
+MaxAmmo             3
+ProjectileType      2
+PurchasePrice       250
+SellingPrice        150
+RechargeRate        6
+RechargePowerCost   2
+RandomBearingOffset 2
+Ballistic           False
+// KeySpace = 32 (&H20)
+KeyTrigger          32

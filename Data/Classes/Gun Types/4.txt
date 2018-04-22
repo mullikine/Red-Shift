@@ -1,0 +1,12 @@
+ClassName           Laser~turret
+FireRate            2
+MaxAmmo             2
+ProjectileType      2
+PurchasePrice       250
+SellingPrice        150
+RechargeRate        6
+RechargePowerCost   2
+RandomBearingOffset 5
+Ballistic           True
+// KeySpace = 32 (&H20)
+KeyTrigger          32

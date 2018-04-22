@@ -1,0 +1,65 @@
+body{
+	background:white;
+	padding:20px;
+	scrollbar-3dlight-color:#808080;
+	scrollbar-arrow-color:#C0FFC0;
+	scrollbar-base-color:#300000;
+	scrollbar-track-color:#000030;
+	scrollbar-shadow-color:#505050;
+	scrollbar-darkshadow-color:#303030;
+	scrollbar-face-color:#000030;
+	scrollbar-highlight-color:#000000;
+	font-family:'BankGothic Lt BT','Square721BT','ISOCTEUR','Eurasia','Letter Gothic','Verdana','Arial';
+}
+
+#links a{
+	padding-left:17;
+	background:none;
+	color:#C0FFC0;
+	text-decoration:none;
+	font-weight:normal;
+}
+
+#links a:hover{
+	color:#00D040;
+}
+
+#text{
+	border: 1px solid #8080FF;
+	background:black;
+	padding:6px;
+	margin-top:1;
+	margin-left:1;
+	margin-right:1;
+	margin-bottom:1;
+	color:#80C080;
+	font-family:'BankGothic Lt BT','Square721BT','ISOCTEUR','Eurasia','Letter Gothic';
+}
+
+#revision{
+	padding:10px;
+	margin-left:5px;
+	margin-top:5px;
+	color:silver;
+	font-style:italic;
+	font-size:12;
+}
+
+table {
+	padding-left: 5px;
+}
+
+td {
+	border-left: 2px dotted #CCCCCC;
+	padding-right: 5px;
+}
+
+#body h1{
+	size:5;
+	border-left: 10px dashed  #CCCCCC;
+}
+
+#body h2{
+	size:4;
+	border-bottom: 2px dotted #FFCCCC;
+}

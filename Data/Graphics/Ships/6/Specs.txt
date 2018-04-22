@@ -1,0 +1,19 @@
+// SPECS FOR A NARLY SHIP
+
+// How many images
+nFrames 3
+
+// How many degrees per image per 180 degs
+DeltaDegs 90
+
+// The frames' file extensions
+Extension .bmp
+
+// The background colour to mask
+Mask 0 255 0
+
+// Flip image when bearing more than 180 degs
+FlipX False
+
+// Size (pixels)
+Size 59

@@ -1,0 +1,5 @@
+// SPECS FOR PROJECTILE IMAGE SETS
+
+
+// Number of image sets
+nProjectileImageSets 6

@@ -1,0 +1,40 @@
+=================+   SHANE INDUSTRIES	+==================
+=================+	RED SHIFT	+==================
+=================+    1.3.7 build 2 	+==================
+
+Developer: Shane Mulligan
+Email: phantomfrosty@hotmail.com
+
+Queries / comments to Shane at the above email address.
+
+REQUIREMENTS
+
+DirectX 8.1 or higher
+
+
+TESTED OK ON
+
+OS: Windows XP SP4, SP1
+NVidia G-Force 2
+
+===========================================================
+
+NEW FEATURES:
+  New rerendering on ships
+  New ships and weapons
+  Species
+
+TUNING:
+  Optimised code and halved EXE build size
+  Improved refueling AI
+  Improved rocket smoke and explosions
+  Improved SFX
+
+PLAN:
+  Relations bugs
+  Government AI
+  AI Tolerance
+  Game editor
+  Trading
+
+=============================================================

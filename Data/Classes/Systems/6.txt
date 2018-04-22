@@ -1,0 +1,7 @@
+Name                            Mildrod
+X                               800
+Y                               -250
+Galaxy                          0
+HyperspaceArriveDistance        10000
+HyperspaceDepartDistance        1000
+Government                      2

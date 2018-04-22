@@ -1,0 +1,15 @@
+// GAME PARAMS
+
+bMusicOn                False
+bSoundsOn               True
+iBGStarsMargin          200
+iFrameRateAverageRange  50
+iMaxFPS                 250
+// Stops loading new ships when FPS sinks to or under this value
+iMinFPS                 40
+iProcsPerFrame          1
+iMaxExplosions          2000
+nBGStars                3000
+nStellarObjectImages    4
+iMaxShips               80
+InvertSpeakers          True

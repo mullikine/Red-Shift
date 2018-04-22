@@ -1,0 +1,3 @@
+// SPECS FOR PROJECTILE TYPES
+
+nProjectileTypes     11

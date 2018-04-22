@@ -1,0 +1,3 @@
+// SPECS FOR SHIP TYPES
+
+nShipTypes 12

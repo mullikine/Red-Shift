@@ -1,0 +1,12 @@
+ClassName           Tractor~beam
+FireRate            2
+MaxAmmo             1
+ProjectileType      4
+PurchasePrice       6000
+SellingPrice        5000
+RechargeRate        1
+RechargePowerCost   6
+RandomBearingOffset 0
+Ballistic           True
+// KeyLessThan = 188 (&HBC)
+KeyTrigger          188

@@ -1,0 +1,2 @@
+StartTheme      bsREALtheme.mid
+MenuMusic       Playlist\to_the_future.mid

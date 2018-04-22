@@ -1,0 +1,15 @@
+Name                            Tywnus
+Kind                            0
+System                          6
+X                               600
+Y                               2000
+Size                            700
+Image                           -2
+SpinSpeed                       -0.4
+GravitationalFieldStrength      12
+GravGeometricRatio              0.999
+MaxGravityAcceleration          0.2
+DescriptionIndex                0
+// rebels = 1
+Government                      2
+Landable                        True

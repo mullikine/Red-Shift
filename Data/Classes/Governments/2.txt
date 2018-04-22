@@ -1,0 +1,5 @@
+Name           Covenant
+Species        1
+Rel0           1
+Rel1           1
+Rel2           2

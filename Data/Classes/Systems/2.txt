@@ -1,0 +1,7 @@
+Name                            Centauri
+X                               -1600
+Y                               100
+Galaxy                          0
+HyperspaceArriveDistance        10000
+HyperspaceDepartDistance        1000
+Government                      0

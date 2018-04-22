@@ -1,0 +1,5 @@
+// SPECS FOR SHIP IMAGE SETS
+
+
+// Number of image sets
+nShipImageSets 12

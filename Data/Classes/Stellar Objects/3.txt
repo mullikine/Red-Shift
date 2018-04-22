@@ -1,0 +1,15 @@
+Name                            Vethair
+Kind                            0
+System                          1
+X                               7000
+Y                               1500
+Size                            250
+Image                           2
+SpinSpeed                       0.03
+GravitationalFieldStrength      8.7
+GravGeometricRatio              0.999
+MaxGravityAcceleration          0.1
+DescriptionIndex                0
+// rebels = 1
+Government                      2
+Landable                        True

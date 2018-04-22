@@ -1,0 +1,34 @@
+ClassName           proton~blast
+WeaponClass         Energy
+ProjectileImage     4
+MaxFuel             12
+Acceleration        -0.8
+// When homing locked supply extra boost
+HLAccelBoost        0
+TractorForce       -1.0
+SpinAcceleration    0
+SpinFrictionRatio   0
+TerminalProximity   3
+StartTimeTillHot    2
+ShieldDamage        50
+HullDamage          18
+Size                10
+BlastExists         True
+// Size / 2
+InitialBlastSize    5
+DeltaBlastSize      1
+BlastTimeLength     1
+FrictionRatio       1
+Homing              False
+LockOnRange         0
+Colour              &HFF
+InitialVelocity     36
+JetstreamType       -1
+JetstreamInitSize   -1
+JetstreamDeltaSize  -1
+JetstreamLastTime   -1
+EffectiveRange      400
+Sound               8
+Frequency           0
+Volume              0.08
+BlastVolume         0.05

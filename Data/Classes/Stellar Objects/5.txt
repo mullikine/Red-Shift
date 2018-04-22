@@ -1,0 +1,15 @@
+Name                            Grivok
+Kind                            0
+System                          3
+X                               -10000
+Y                               -1500
+Size                            820
+Image                           4
+SpinSpeed                       0.03
+GravitationalFieldStrength      20
+GravGeometricRatio              0.999
+MaxGravityAcceleration          0.01
+DescriptionIndex                0
+// confed = 0
+Government                      0
+Landable                        True

@@ -1,0 +1,12 @@
+ClassName           Proton~cannon
+FireRate            3
+MaxAmmo             2
+ProjectileType      1
+PurchasePrice       400
+SellingPrice        200
+RechargeRate        5
+RechargePowerCost   4
+RandomBearingOffset 3
+Ballistic           False
+// KeySpace = 32 (&H20)
+KeyTrigger          32

@@ -1,0 +1,5 @@
+// SPECS FOR SOUND BUFFERS
+
+nSounds            13
+nBuffersPerSound   25
+MaxRange           18000

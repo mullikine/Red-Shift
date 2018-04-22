@@ -1,0 +1,12 @@
+ClassName           Fusion~beam
+FireRate            2
+MaxAmmo             1
+ProjectileType      6
+PurchasePrice       4000
+SellingPrice        1500
+RechargeRate        1
+RechargePowerCost   3
+RandomBearingOffset 0
+Ballistic           True
+// vbKeySpace = 32 (&H20)
+KeyTrigger          32

@@ -1,0 +1,15 @@
+Name                            Moon
+Kind                            1
+System                          0
+X                               -1560
+Y                               825
+Size                            300
+Image                           1
+SpinSpeed                       0.005
+GravitationalFieldStrength      11
+GravGeometricRatio              0.995
+MaxGravityAcceleration          0.1
+DescriptionIndex                0
+// confed = 0
+Government                      0
+Landable                        True

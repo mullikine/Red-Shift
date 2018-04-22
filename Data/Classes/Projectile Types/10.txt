@@ -1,0 +1,34 @@
+ClassName           light~missile
+WeaponClass         Rocket
+ProjectileImage     1
+MaxFuel             100
+Acceleration        7
+// When homing locked supply extra boost
+HLAccelBoost        2
+TractorForce        -80
+SpinAcceleration    1.4
+SpinFrictionRatio   0.99
+TerminalProximity   3
+StartTimeTillHot    2
+ShieldDamage        350
+HullDamage          150
+Size                40
+BlastExists         True
+// Size / 2
+InitialBlastSize    10
+DeltaBlastSize      1
+BlastTimeLength     3
+FrictionRatio       0.9975
+Homing              True
+LockOnRange         1500
+Colour              &HFFFFFF00
+InitialVelocity     5
+JetstreamType       0
+JetstreamInitSize   4
+JetstreamDeltaSize  -0.7
+JetstreamLastTime   4
+EffectiveRange      1500
+Sound               10
+Frequency           0
+Volume              0.2
+BlastVolume         0.1

@@ -1,0 +1,3 @@
+Name            The Milky Way
+X               0
+Y               0

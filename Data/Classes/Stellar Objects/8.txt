@@ -1,0 +1,15 @@
+Name                            Namot
+Kind                            0
+System                          6
+X                               -200
+Y                               700
+Size                            600
+Image                           -2
+SpinSpeed                       -0.35
+GravitationalFieldStrength      11
+GravGeometricRatio              0.999
+MaxGravityAcceleration          0.2
+DescriptionIndex                0
+// rebels = 1
+Government                      2
+Landable                        True

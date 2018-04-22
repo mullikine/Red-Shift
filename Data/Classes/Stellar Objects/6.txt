@@ -1,0 +1,15 @@
+Name                            QATL1043
+Kind                            3
+System                          4
+X                               -200000
+Y                               810234
+Size                            1000
+Image                           -1
+SpinSpeed                       1
+GravitationalFieldStrength      10000
+GravGeometricRatio              0.99999
+MaxGravityAcceleration          10000
+DescriptionIndex                0
+// No Government = 2
+Government                      -1
+Landable                        False

@@ -1,0 +1,12 @@
+ClassName           Mass~Cannon
+FireRate            1
+MaxAmmo             600
+ProjectileType      9
+PurchasePrice       150
+SellingPrice        70
+RechargeRate        0
+RechargePowerCost   0
+RandomBearingOffset 3
+Ballistic           False
+// KeySpace = 32 (&H20)
+KeyTrigger          32

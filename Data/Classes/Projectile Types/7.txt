@@ -1,0 +1,34 @@
+ClassName           heavy~missile
+WeaponClass         Rocket
+ProjectileImage     6
+MaxFuel             200
+Acceleration        9
+// When homing locked supply extra boost
+HLAccelBoost        1
+TractorForce        -150
+SpinAcceleration    2
+SpinFrictionRatio   0.99
+TerminalProximity   3
+StartTimeTillHot    2
+ShieldDamage        750
+HullDamage          450
+Size                60
+BlastExists         True
+// Size / 2
+InitialBlastSize    20
+DeltaBlastSize      1
+BlastTimeLength     7
+FrictionRatio       0.997
+Homing              True
+LockOnRange         2000
+Colour              &HFFFFFFFF
+InitialVelocity     5
+JetstreamType       0
+JetstreamInitSize   5
+JetstreamDeltaSize  -0.7
+JetstreamLastTime   6
+EffectiveRange      2000
+Sound               10
+Frequency           0
+Volume              0.3
+BlastVolume         0.4

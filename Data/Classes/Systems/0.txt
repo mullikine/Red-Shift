@@ -1,0 +1,7 @@
+Name                            Sol
+X                               -1800
+Y                               -190
+Galaxy                          0
+HyperspaceArriveDistance        10000
+HyperspaceDepartDistance        1000
+Government                      0

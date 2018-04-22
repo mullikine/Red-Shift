@@ -1,0 +1,34 @@
+ClassName           death~blast
+WeaponClass         Energy
+ProjectileImage     0
+MaxFuel             70
+Acceleration        4
+// When homing locked supply extra boost
+HLAccelBoost        3
+TractorForce        -2.5
+SpinAcceleration    4
+SpinFrictionRatio   0.98
+TerminalProximity   3
+StartTimeTillHot    2
+ShieldDamage        160
+HullDamage          12
+Size                10
+BlastExists         True
+// Size / 2
+InitialBlastSize    5
+DeltaBlastSize      1
+BlastTimeLength     1
+FrictionRatio       0.9985
+Homing              True
+LockOnRange         500
+Colour              &HFF00FF
+InitialVelocity     20
+JetstreamType       -1
+JetstreamInitSize   -1
+JetstreamDeltaSize  -1
+JetstreamLastTime   -1
+EffectiveRange      400
+Sound               8
+Frequency           5000
+Volume              0.003
+BlastVolume         0.003

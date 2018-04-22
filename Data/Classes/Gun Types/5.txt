@@ -1,0 +1,12 @@
+ClassName           Death~turret
+FireRate            4
+MaxAmmo             10
+ProjectileType      3
+PurchasePrice       1500
+SellingPrice        800
+RechargeRate        8
+RechargePowerCost   2
+RandomBearingOffset 5
+Ballistic           False
+// KeySpace = 32 (&H20)
+KeyTrigger          32

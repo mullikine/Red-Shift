@@ -1,0 +1,12 @@
+ClassName           Neutron~blaster
+FireRate            4
+MaxAmmo             2
+ProjectileType      0
+PurchasePrice       900
+SellingPrice        400
+RechargeRate        8
+RechargePowerCost   10
+RandomBearingOffset 12
+Ballistic           False
+// KeySpace = 32 (&H20)
+KeyTrigger          32

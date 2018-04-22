@@ -1,0 +1,5 @@
+Name           Confederation
+Species        0
+Rel0           2
+Rel1           1
+Rel2           1
