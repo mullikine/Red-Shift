@@ -4,4 +4,4 @@ Y                               -53
 Galaxy                          0
 HyperspaceArriveDistance        4000
 HyperspaceDepartDistance        0
-Government                      -1
+Government                      -1      -1

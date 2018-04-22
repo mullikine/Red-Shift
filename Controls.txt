@@ -1,0 +1,44 @@
+No Modifiers
+	P	Pause
+	M	Map
+	*	Radar
+
+  Map
+	-	Zoom Out
+	+	Zoom In
+  No Map
+    End
+	-	Zoom Out Radar
+	+	Zoom In Radar
+    Home
+	-	Zoom Out View
+	+	Zoom In View
+
+	F12	Radar Zoom View Zoom
+
+	F5	Up Tempo
+	F6	Down Tempo
+	F7	Up Volume
+	F8	Down Volume
+
+	Esc	Escape
+
+Control
+	+	Increase Procs per Frame
+	-	Decrease Procs per Frame
+	D	Self Destruct
+	E	Eject (Not implemented)
+
+	S	Next Ship
+	Q	Select Selected Ship's Fleet Master
+	F	Make selected ship hostile
+
+If Not Control
+	C	Autopilot
+	Q	Toggle Fighters Hot
+	PageUp	Switch Ships
+	U	Cloak
+	Tab	Next Stellar Object
+	A	Cycle Select Relations
+	S	Select Closest Ship of Current Select Relations
+	/	Chase Selected Ship

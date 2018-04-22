@@ -72,3 +72,12 @@ Dim iIndex As Integer
    End If
 
 End Sub
+         
+         End Select
+         
+      End With
+      
+      Beep
+   End If
+
+End Sub

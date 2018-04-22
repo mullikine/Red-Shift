@@ -1,0 +1,15 @@
+Name                            The~Moon~of~Sam
+Kind                            0
+System                          7
+X                               -500
+Y                               -100
+Size                            200
+Image                           1
+SpinSpeed                       0.005
+GravitationalFieldStrength      2
+GravGeometricRatio              0.999
+MaxGravityAcceleration          0.2
+DescriptionIndex                0
+// rebels = 1
+Government                      3
+Landable                        False

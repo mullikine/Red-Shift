@@ -96,3 +96,19 @@ Sub CleanUp()
 
 End Sub
 
+   End If
+               
+            End With
+            Exit For
+         End If
+      Next
+   End If
+
+End Sub
+
+Sub CleanUp()
+
+   Erase DSToneBuffers
+
+End Sub
+

@@ -1,0 +1,15 @@
+Name                            Bulls~Eye~Central
+Kind                            0
+System                          8
+X                               -500
+Y                               -100
+Size                            525
+Image                           5
+SpinSpeed                       0.005
+GravitationalFieldStrength      2
+GravGeometricRatio              0.999
+MaxGravityAcceleration          0.2
+DescriptionIndex                0
+// rebels = 1
+Government                      4
+Landable                        False

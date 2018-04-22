@@ -159,3 +159,114 @@ Dim iPrediction As Integer
    D3DDevice.DrawPrimitiveUP D3DPT_LINESTRIP, MaxPredict, TempVerts(0), Len(TempVerts(0))
 
 End Sub
+   For RefShip = 0 To nShips
+         With Ships(RefShip)
+            If .system = Ships(You.Ship).system Then
+               pX = ZoomX(.x + SpaceOffset.x)
+               pY = ZoomY(-.y + SpaceOffset.y)
+            
+               Radius = ZoomMod(ShipTypes(.ShipType).Size / 2)
+               If pX > ScreenDims.x - Radius And pX < ScreenDims.x + Radius + ScreenDims.Width And pY > ScreenDims.y - Radius And pY < ScreenDims.y + ScreenDims.Height + Radius Then
+                  Radius = ShipTypes(.ShipType).Size / 2
+                  ' Hull Circle
+                  DrawCircle pX, pY, ZoomMod(Radius) + 10, ZoomMod(Radius) + 5, ShipTypes(.ShipType).Size * PI / 2, StartFinish, , , , Grey, DarkGrey, , 0, 360 * (PositivePart(.Hull) / ShipTypes(.ShipType).MaxHull)
+                  
+                  ' Shield Circle
+                  DrawCircle pX, pY, ZoomMod(Radius) + 15, ZoomMod(Radius) + 10, ShipTypes(.ShipType).Size * PI / 2, StartFinish, , , , Red, Blue, , 0, 360 * (PositivePart(.Shield) / ShipTypes(.ShipType).MaxShield)
+               End If
+            End If
+         End With
+      Next RefShip
+   End If
+
+End Sub
+
+Sub DrawMessages()
+Dim ShiftDown As Boolean
+
+   ShiftDown = False
+   For RefMessage = 0 To 3
+      With Messages(RefMessage)
+         
+         If .TimePlaced + .TimeLast > Timer And .message <> vbNullString Then
+            DrawText .message, 10, 768 - 14 * (RefMessage + 1), 12, 12, .Colour, 1
+            If ShiftDown Then
+               Messages(RefMessage - 1) = Messages(RefMessage)
+               Messages(RefMessage).message = vbNullString
+            Else
+               ShiftDown = False
+            End If
+         Else
+            .message = vbNullString
+            ShiftDown = True
+         End If
+         
+      End With
+   Next RefMessage
+
+End Sub
+
+Sub DisplayMessage(ByVal message As String, Optional ByVal Colour As Long = White, Optional ByVal TimeLast As Single = 3)
+
+   For RefMessage = 0 To 3
+      With Messages(RefMessage)
+      
+         If .message = vbNullString Then
+            .message = message
+            .Colour = Colour
+            .TimePlaced = Timer
+            .TimeLast = TimeLast
+            Exit For
+         Else
+            If RefMessage = 3 Then
+               Messages(0).message = message
+               Messages(0).Colour = Colour
+               Messages(0).TimePlaced = Timer
+               Messages(0).TimeLast = TimeLast
+            End If
+         End If
+      
+      End With
+   Next RefMessage
+   mSounds.Play sndAlert, 0
+
+End Sub
+
+Sub DrawCourse(ByVal pShip As Integer, ByVal MaxPredict As Single, Optional ByVal Colour1 As Long = Yellow, Optional ByVal Colour2 As Long = Red)
+Dim Pos As Pol2
+Dim Vel As Pol2
+Dim TempVerts() As TLVERTEX
+Dim iPrediction As Integer
+
+   Pos = Rect2ToPol2(NewRect2(Ships(pShip).x, Ships(pShip).y))
+   Vel = NewPol2(Ships(pShip).maMod, Ships(pShip).maArg)
+   
+   ReDim TempVerts(MaxPredict) As TLVERTEX
+   
+   For iPrediction = 0 To MaxPredict
+   
+      With TempVerts(iPrediction)
+         
+         .x = ZoomX(Pol2ToRect2(Pos).x + SpaceOffset.x)
+         .y = ZoomY(-Pol2ToRect2(Pos).y + SpaceOffset.y)
+         .color = Blend(Colour2, Colour1, iPrediction / MaxPredict)
+         .rhw = 1
+         .specular = 0
+         .tu = 0
+         .tv = 0
+         
+      End With
+      
+      ' account for friction on vel
+      Vel.M = Vel.M * ShipTypes(Ships(pShip).ShipType).FrictionRatio ^ Vel.M
+      ' account for gravity on vel
+      Vel = Pol2Pol2Add(Vel, NetGravityAt(Ships(pShip).system, Pol2ToRect2(Pos)))
+      ' new pos from vel
+      Pos = Pol2Pol2Add(Pos, Vel)
+   
+   Next iPrediction
+   
+   D3DDevice.SetTexture 0, ViewImages(0)
+   D3DDevice.DrawPrimitiveUP D3DPT_POINTLIST, MaxPredict, TempVerts(0), Len(TempVerts(0))
+
+End Sub

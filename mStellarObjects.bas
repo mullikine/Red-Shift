@@ -68,3 +68,11 @@ Sub DrawRadars()
     Next RefStellarObject
 
 End Sub
+lationColour(GovRelations(StellarObjects(RefStellarObject).Government, Ships(You.Ship).Government)), &H0, 0.5)
+               End Select
+            End If
+            
+        End With
+    Next RefStellarObject
+
+End Sub

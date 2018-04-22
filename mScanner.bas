@@ -82,3 +82,12 @@ Dim TempVerts(1) As TLVERTEX
    D3DDevice.DrawPrimitiveUP D3DPT_LINELIST, 1, TempVerts(0), Len(TempVerts(0))
 
 End Sub
+   TempVerts(1).x = CompassX + CompassRadius * Sin(ToRadians(Bearing))
+   TempVerts(1).y = CompassY + CompassRadius * Cos(ToRadians(Bearing))
+   TempVerts(1).tu = 1
+   TempVerts(1).color = Colour
+   
+   D3DDevice.SetTexture 0, ViewImages(0)
+   D3DDevice.DrawPrimitiveUP D3DPT_LINELIST, 1, TempVerts(0), Len(TempVerts(0))
+
+End Sub

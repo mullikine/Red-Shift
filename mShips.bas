@@ -1178,3 +1178,476 @@ Dim Distance As Single
    Next iStellarObject
 
 End Function
+                    ModArg = Pol2Pol2Add(NewPol2(.maMod, .maArg), NewPol2(ProjectileTypes(Projectiles(RefProjectile).ProjectileType).TractorForce / ShipTypes(.ShipType).Mass, Projectiles(RefProjectile).maBearing + 180))
+                     .maMod = ModArg.M
+                     .maArg = ModArg.A
+                     
+                     Projectiles(RefProjectile).Exists = False
+                     
+                     ' Relations
+                     If Projectiles(RefProjectile).OwnorShip <> -1 Then
+                        If ShipRelations(RefShip, Projectiles(RefProjectile).OwnorShip) = Neutral Or _
+                        ShipRelations(RefShip, Projectiles(RefProjectile).OwnorShip) = Forbiddon Then
+                           ShipRelations(RefShip, Projectiles(RefProjectile).OwnorShip) = Hostile
+                        End If
+                     End If
+                  End If
+               End If
+            End If
+         End If
+      Next RefProjectile
+      
+Damagefromexplosions:
+      ' Damage from explosions
+      '''
+      
+SmokeAndSparks:
+      ' Smoke and sparks
+      If (.Hull / ShipTypes(.ShipType).MaxHull) < 0.5 And Not .Died Then
+         If (Rnd * ((.Hull / ShipTypes(.ShipType).MaxHull) / 0.5) * 10) < 1 Then
+            MakeExplosion CSng(.x + Rnd * ShipTypes(.ShipType).Size / 3 - ShipTypes(.ShipType).Size / 6), CSng(.y + Rnd * ShipTypes(.ShipType).Size / 3 - ShipTypes(.ShipType).Size / 6), .system, 10, -1, 6, SmokeEx, 0
+            If Int(Rnd * 5) = 0 Then
+               'MakeExplosion CSng(.x + Rnd * ShipTypes(.ShipType).Size / 3 - ShipTypes(.ShipType).Size / 6), CSng(.y + Rnd * ShipTypes(.ShipType).Size / 3 - ShipTypes(.ShipType).Size / 6), .system, 6, 1, 4, CatalystEx, 0.05
+               MakeFlurry CSng(.x + Rnd * ShipTypes(.ShipType).Size / 3 - ShipTypes(.ShipType).Size / 6), CSng(.y + Rnd * ShipTypes(.ShipType).Size / 3 - ShipTypes(.ShipType).Size / 6), .system, 8, Int(ShipTypes(.ShipType).Size / 10), Cyan, Blue 'come out as opposite colours Yellow and Red
+               '.Hull = .Hull - 1
+            End If
+         End If
+      End If
+      
+   End With
+
+End Sub
+
+
+Private Sub DrawJetstream()
+Dim JetSize As Integer
+Dim Size As Single
+Dim ModFromCenter As Single
+Dim x As Single
+Dim y As Single
+
+Dim ModArg As Pol2
+
+EnableBlendOne
+
+   With Ships(RefShip)
+      
+      If .MoveUp And .system = Ships(You.Ship).system And .FuelLeft > 0 Then
+         JetSize = ShipTypes(.ShipType).Size / 9
+         If .AfterburnerOn Then JetSize = 1.3 * JetSize
+         If .InHyperspace Then
+            JetSize = 1.5 * JetSize
+            For i = 0 To Int(.maMod / 2)
+               ModArg.M = ShipTypes(.ShipType).Size / 2 + Rnd * .maMod
+               ModArg.A = Mod360(.maBearing + 180 + Rnd * 18 - 9)
+               MakeDust .x + Pol2ToRect2(ModArg).x, _
+                  .y + Pol2ToRect2(ModArg).y, _
+                  .system, _
+                  3, _
+                  vbBlue, _
+                  vbBlack, _
+                  Rnd * 6 - 3, _
+                  Rnd * 6 - 3
+            Next i
+         End If
+         
+         For i = 0 To 10
+            ModFromCenter = ShipTypes(.ShipType).Size / 4 + Rnd * ShipTypes(.ShipType).Size / 3
+            If .AfterburnerOn Then ModFromCenter = ModFromCenter * 1.2
+            
+            Size = JetSize * ((ShipTypes(.ShipType).Size * (1 / 4 + 1 / 3)) / ModFromCenter)
+            x = .x - PolToX(ModFromCenter, Mod360(.maBearing))
+            y = .y - PolToY(ModFromCenter, Mod360(.maBearing))
+            
+            If .InHyperspace Then
+               DrawTexture mTextures.txrFlares(1), NewfRECT(1, 0, 1, 0), _
+                  NewfRECT(y - Size / 2, y + Size / 2, x - Size / 2, x + Size / 2), _
+                  0, True, NewColour(0, 255 / 9, 255 / 3, 0)
+            Else
+               DrawTexture mTextures.txrFlares(1), NewfRECT(1, 0, 1, 0), _
+                  NewfRECT(y - Size / 2, y + Size / 2, x - Size / 2, x + Size / 2), _
+                  0, True, NewColour(255 / 3, 255 / 9, 0, 0)
+            End If
+         Next i 'Mod360(.maBearing + 180) ' CartToArg(.LastX - .X, .LastY - .Y)
+      End If
+      
+   End With
+
+EnableBlendNormal
+
+End Sub
+
+
+Private Sub DoFuelShieldCloakBattery()
+
+   With Ships(RefShip)
+      
+      ' Shield
+      If .Shield < ShipTypes(.ShipType).MaxShield And .Battery >= ShipTypes(.ShipType).ShieldRechargePowerCost Then
+         .Shield = .Shield + ShipTypes(.ShipType).ShieldRechargeValue
+         .Battery = .Battery - ShipTypes(.ShipType).ShieldRechargePowerCost
+      End If
+      .Shield = Bound(.Shield, ShipTypes(.ShipType).MaxShield, 0)
+      
+      ' Cloak
+      If .CloakOn Then
+         ' Cloak draining
+         .Cloak = .Cloak - ShipTypes(.ShipType).CloakDrainRate
+         If .Cloak < 0 Then
+            .CloakOn = False
+         End If
+      Else
+         ' Cloak recharging
+         If .Cloak < ShipTypes(.ShipType).MaxCloak And .Battery >= ShipTypes(.ShipType).CloakRechargePowerCost Then
+            .Cloak = .Cloak + ShipTypes(.ShipType).CloakRechargeValue
+            .Battery = .Battery - ShipTypes(.ShipType).CloakRechargePowerCost
+         End If
+      End If
+      .Cloak = Bound(.Cloak, ShipTypes(.ShipType).MaxCloak, 0)
+      
+      ' Fuel
+      If .FuelLeft > 0 Then
+         If .MoveUp Then
+            .FuelLeft = .FuelLeft - ShipTypes(.ShipType).Acceleration
+            If .AfterburnerOn Then
+               .FuelLeft = .FuelLeft - ShipTypes(.ShipType).AfterburnerAcceleration
+            End If
+         End If
+         If .MoveLeft Or .MoveRight Then
+            .FuelLeft = .FuelLeft - ToRadians(ShipTypes(.ShipType).SpinAcceleration) * (ShipTypes(.ShipType).Size / 5)
+         End If
+      End If
+      ' refuel at planet or station
+      If .CurrentStellarObject <> -1 Then
+         If StellarObjects(.CurrentStellarObject).Government = .Government Then
+            .FuelLeft = .FuelLeft + 5
+         End If
+      End If
+      .FuelLeft = Bound(.FuelLeft, ShipTypes(.ShipType).MaxFuel, 0)
+      
+      ' Battery / generator
+      If .Battery < ShipTypes(.ShipType).MaxBattery And .FuelLeft >= ShipTypes(.ShipType).BatteryReGenerateFuelCost Then
+         .Battery = .Battery + ShipTypes(.ShipType).BatteryReGenerateValue
+         .FuelLeft = .FuelLeft - ShipTypes(.ShipType).BatteryReGenerateFuelCost
+      End If
+      .Battery = Bound(.Battery, ShipTypes(.ShipType).MaxBattery, 0)
+   
+   End With
+
+End Sub
+
+
+Private Sub DoHeadingAndBearing()
+
+   With Ships(RefShip)
+      
+      .maBearing = Mod360(.maBearing)
+      .maArg = Mod360(.maArg)
+      
+   End With
+
+End Sub
+
+
+Private Sub DoNewLocation()
+
+    With Ships(RefShip)
+        
+        .LastX = .x
+        .LastY = .y
+        .x = .x + PolToX(.maMod, .maArg)
+        .y = .y + PolToY(.maMod, .maArg)
+        
+    End With
+
+End Sub
+
+
+Function HyperspaceTo(ByVal system As Integer, Optional ByVal pShip As Integer = -1) As eHyperspaceToReturn
+
+   If system = -1 Then Exit Function
+   
+   If pShip = -1 Then pShip = RefShip
+   
+   With Ships(pShip)
+   
+      If .InHyperspace Then
+         HyperspaceTo = Already_Entering_Hyperspace
+         Exit Function
+      End If
+      
+      If Sqr(.x ^ 2 + .y ^ 2) < Systems(.system).HyperspaceDepartDistance Then
+         If pShip = You.Ship Then DisplayMessage "Not far enough from system center", White
+         HyperspaceTo = Not_Far_Enough_From_Center
+         Exit Function
+      End If
+      
+      HyperspaceTo = Entering_Hyperspace
+      .HyperspaceDestination = system
+      .HyperspaceCruiseDistance = DistanceSysToSys(.system, .HyperspaceDestination)
+      .HyperspaceCruiseDistanceCompleted = 0
+      
+      ' if not enough fuel then abort
+      If .FuelLeft < .HyperspaceCruiseDistance Then
+         If pShip = You.Ship Then DisplayMessage "Insufficient fuel to complete jump to " & Systems(.HyperspaceDestination).Name, White
+         .HyperspaceDestination = -1
+         HyperspaceTo = Not_Enough_Fuel
+      End If
+   
+   End With
+
+End Function
+
+
+Sub DoHyperspace()
+
+   With Ships(RefShip)
+      
+      .MoveUp = True
+      '.MoveDown = True
+      
+      ' turn to correct direction and
+      If Not .InHyperspace Then
+         If TurnToBearing(CartToArg(-(Systems(.system).x - Systems(.HyperspaceDestination).x), Systems(.system).y - Systems(.HyperspaceDestination).y)) Then
+            .MoveDown = False
+            .InHyperspace = True
+            If You.Ship = RefShip Then
+               mSounds.Play sndJumpLeave
+            ElseIf ShipRelations(You.Ship, RefShip) = Hostile And Ships(You.Ship).system = Ships(RefShip).system Then
+               mSounds.Play sndHostileJumpLeave
+            End If
+            Exit Sub
+         End If
+      End If
+      
+      TurnToBearing (CartToArg(-(Systems(.system).x - Systems(.HyperspaceDestination).x), Systems(.system).y - Systems(.HyperspaceDestination).y))
+      
+      If .maMod > ShipTypes(.ShipType).HyperspaceCruiseSpeed Then
+         .maMod = ShipTypes(.ShipType).HyperspaceCruiseSpeed
+      End If
+      
+      If .maMod = ShipTypes(.ShipType).HyperspaceCruiseSpeed Then
+         .HyperspaceCruiseDistanceCompleted = .HyperspaceCruiseDistanceCompleted + ShipTypes(.ShipType).HyperspaceCruiseSpeed / 10
+      End If
+      
+      If .HyperspaceCruiseDistanceCompleted >= DistanceSysToSys(.system, .HyperspaceDestination) Then
+         .system = .HyperspaceDestination
+
+         .x = PolToX(Systems(.HyperspaceDestination).HyperspaceArriveDistance, .maArg + 180)
+         .y = PolToY(Systems(.HyperspaceDestination).HyperspaceArriveDistance, .maArg + 180)
+         
+         MakeFlurry CSng(.x), CSng(.y), .system, 20, ShipTypes(.ShipType).Size * 2, Blue, DarkBlue
+         MakeFlurry CSng(.x), CSng(.y), .system, 10, ShipTypes(.ShipType).Size, LightBlue, Blue
+         
+         .maMod = 100
+         
+         mTabSelect.Reset RefShip
+         
+         .InHyperspace = False
+         .FuelLeft = .FuelLeft - .HyperspaceCruiseDistance
+         .HyperspaceDestination = -1
+         .HyperspaceCruiseDistance = 0
+         .HyperspaceCruiseDistanceCompleted = 0
+         
+         ' Player only
+         If RefShip = You.Ship Then
+            mStars.InitialPhysics
+            mSounds.Play sndJumpArive
+         Else
+            If ShipRelations(You.Ship, RefShip) = Hostile And Ships(You.Ship).system = Ships(RefShip).system Then
+               mSounds.Play sndHostileJumpArive
+            End If
+         End If
+      End If
+      
+   End With
+
+End Sub
+
+
+Sub DoShipRefs()
+
+   With Ships(RefShip)
+      
+      If .CurrentShipSelection <> -1 Then
+         If Ships(.CurrentShipSelection).Died Or Ships(.CurrentShipSelection).system <> Ships(.CurrentShipSelection).system Then
+            .CurrentShipSelection = -1
+         End If
+      End If
+      
+      If .OwnorShip <> -1 Then
+         If Ships(.OwnorShip).Died Then
+            .OwnorShip = -1
+         End If
+      End If
+      
+   End With
+
+End Sub
+
+
+Private Sub ChangeMod(ByVal Rate As Single)
+Dim ModArg As Pol2
+
+   With Ships(RefShip)
+      
+      ModArg = Pol2Pol2Add(NewPol2(.maMod, .maArg), NewPol2(Rate, .maBearing))
+      .maMod = ModArg.M
+      .maArg = ModArg.A
+      
+   End With
+
+End Sub
+
+
+Function TotalAcceleration(ByVal RefShip As Integer) As Single
+
+   With Ships(RefShip)
+   
+      If .FuelLeft > 0 Then
+         TotalAcceleration = ShipTypes(.ShipType).Acceleration
+         If .AfterburnerOn Then
+            TotalAcceleration = TotalAcceleration + ShipTypes(.ShipType).AfterburnerAcceleration
+         End If
+      End If
+      
+   End With
+
+End Function
+
+
+Function TotalSpinAcceleration(ByVal RefShip As Integer) As Single
+
+   With Ships(RefShip)
+   
+      If .FuelLeft > 0 Then
+         TotalSpinAcceleration = ShipTypes(.ShipType).SpinAcceleration
+      End If
+      
+   End With
+
+End Function
+
+
+Private Function TurnToBearing(ByVal Bearing As Single) As Boolean
+
+   With Ships(RefShip)
+   
+      Bearing = DifferenceBetweenAngles(Mod360(.maBearing), Mod360(Bearing))
+      If Abs(Bearing) <= 1 And Abs(.Spin) < ShipTypes(.ShipType).SpinAcceleration Then
+         .Spin = 0
+         .maBearing = .maBearing + Bearing
+         TurnToBearing = True
+      Else
+         .MoveLeft = False
+         .MoveRight = False
+         .Align = Abs(Bearing) < 5
+         If Bearing < 0 Then
+            .MoveLeft = True
+         Else
+            .MoveRight = True
+         End If
+         .Spin = BoundMax(Abs(Bearing) / 2, 1) * .Spin
+      End If
+      
+   End With
+
+End Function
+
+Public Sub NewShips()
+Dim TempRefShip As Integer
+Dim RSO As Integer
+
+   If mMonitor.LastFPS > mGame.MinFPS Then
+      'If Int(Rnd * 50) = 0 Then
+         RSO = RandomSO(RandomSys(RandomGxy))
+         If RSO <> -1 Then
+            With StellarObjects(RSO)
+            
+               If .Landable Then
+TryAgain:
+                  i = Int(Rnd * (UBound(ShipTypes) + 1))
+                  If ShipTypes(i).SpeciesSpecific <> -1 And ShipTypes(i).SpeciesSpecific <> Governments(.Government).Species Then GoTo TryAgain
+                  If ShipTypes(i).GovernmentSpecific <> -1 And ShipTypes(i).GovernmentSpecific <> .Government Then GoTo TryAgain
+                  TempRefShip = NewShip(i, ClosestShipFromSO(RSO, .Government), .system, .x + Int(Rnd * .Size) - .Size / 2, .y + Int(Rnd * .Size) - .Size / 2, 0, 0, Rnd * 360, .Government, Millitary, , 1000)
+               End If
+            
+            End With
+         End If
+      'End If
+   End If
+
+End Sub
+
+Sub SelectDefaultGuns(ByRef iShip As Integer)
+Dim TmpGuns() As Variant
+
+   With Ships(iShip)
+   
+      ReDim TmpGuns(UBound(Split(ShipTypes(.ShipType).DefaultGunTypes, ",")))
+      ' Select default weapons
+      For i = 0 To UBound(TmpGuns)
+         TmpGuns(i) = NewGun(Split(ShipTypes(.ShipType).DefaultGunTypes, ",")(i))
+      Next i
+      .Guns = Join(TmpGuns, ",")
+   
+   End With
+
+End Sub
+
+Sub IncKills(ByVal iShip As Integer, Optional ByVal nKills As Long = 1)
+   
+   If Ships(iShip).OwnorShip <> -1 Then
+      IncKills Ships(iShip).OwnorShip, nKills
+   End If
+   
+   Ships(iShip).Kills = Ships(iShip).Kills + nKills
+
+End Sub
+
+Function TopSpeed(ByVal ShipType As Integer) As Single
+
+   With ShipTypes(ShipType)
+   
+      TopSpeed = -.Acceleration / (.FrictionRatio - 1)
+   
+   End With
+
+End Function
+
+Function Image(ByVal ShipType As Integer, ByVal f0_360 As Single) As Direct3DBaseTexture8
+
+   If ShipImageSets(ShipTypes(ShipType).ShipImage).FlipX Then
+      If f0_360 > 180 Then
+         f0_360 = 180 - (f0_360 - 180)
+      End If
+   End If
+   
+   f0_360 = Round(f0_360 / ShipImageSets(ShipTypes(ShipType).ShipImage).DeltaDegs, 0)
+   
+   If f0_360 = ShipImageSets(ShipTypes(ShipType).ShipImage).Frames + 1 Then f0_360 = 0
+   
+   Set Image = ShipImageSets(ShipTypes(ShipType).ShipImage).Image(f0_360)
+
+End Function
+
+Function NetGravityAt(ByVal system As Integer, ByRef Location As Rect2) As Pol2
+Dim iStellarObject As Integer
+Dim GravityTemp As Single
+Dim Distance As Single
+   
+   For iStellarObject = 0 To UBound(StellarObjects)
+      With StellarObjects(iStellarObject)
+         If .system = system Then
+            If DistanceBetween(NewRect2(.x, .y), Location) < .Size / 2 Then
+               NetGravityAt = NewPol2(0, 0)
+               Exit Function ' there is definitely no force of gravity here
+            End If
+            Distance = DistanceBetween(Location, NewRect2(.x, .y))
+            GravityTemp = BoundMax(.GravitationalFieldStrength / (Distance / 1000) ^ 2, .MaxGravityAcceleration)
+            NetGravityAt = Pol2Pol2Add(NetGravityAt, NewPol2(GravityTemp, CartToArg(.x - Location.x, .y - Location.y)))
+         End If
+      End With
+   Next iStellarObject
+
+End Function

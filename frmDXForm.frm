@@ -73,3 +73,8 @@ Private Sub picDX_MouseUp(Button As Integer, Shift As Integer, x As Single, y As
    End If
 
 End Sub
+         'mMap.MapUp = False
+      End If
+   End If
+
+End Sub

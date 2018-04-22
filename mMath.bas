@@ -423,3 +423,15 @@ Function ACsc(Value As Double) As Double
         ACsc = 1.5707963267949 * Sgn(Value)
     End If
 End Function
+arc cosecant
+' error if value is inside the range [-1,1]
+
+Function ACsc(Value As Double) As Double
+    ' NOTE: the following lines can be replaced by a single call
+    '            ACsc = ASin(1 / value)
+    If Abs(Value) <> 1 Then
+        ACsc = Atn((1 / Value) / Sqr(1 - 1 / (Value * Value)))
+    Else
+        ACsc = 1.5707963267949 * Sgn(Value)
+    End If
+End Function

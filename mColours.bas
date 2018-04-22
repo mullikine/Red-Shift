@@ -146,3 +146,6 @@ Dim Col(1) As RGBA
    Blend = RGBAToLong(NewRGBA(CByte(Col(0).Red * Ratio + Col(1).Red * (1 - Ratio)), CByte(Col(0).Green * Ratio + Col(1).Green * (1 - Ratio)), CByte(Col(0).Blue * Ratio + Col(1).Blue * (1 - Ratio)), CByte(Col(0).alpha * Ratio + Col(1).alpha * (1 - Ratio)), CByte(Col(0).Reserved * Ratio + Col(1).Reserved * (1 - Ratio))))
 
 End Function
+o + Col(1).alpha * (1 - Ratio)), CByte(Col(0).Reserved * Ratio + Col(1).Reserved * (1 - Ratio))))
+
+End Function

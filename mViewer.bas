@@ -78,3 +78,18 @@ Function ZoomYR(ByVal OriginalY As Long) As Long
     ZoomYR = OriginalY * RadarZoom + SpaceCenter.y * (1 - RadarZoom)
 
 End Function
+om
+
+End Function
+
+Function ZoomXR(ByVal OriginalX As Long) As Long
+
+    ZoomXR = OriginalX * RadarZoom + SpaceCenter.X * (1 - RadarZoom)
+
+End Function
+
+Function ZoomYR(ByVal OriginalY As Long) As Long
+
+    ZoomYR = OriginalY * RadarZoom + SpaceCenter.Y * (1 - RadarZoom)
+
+End Function

@@ -1,0 +1,53 @@
+
+            Case 2
+               .x = x + Int(OuterRadius * Sin(((i + 1) / (nSides / 2)) * PI))
+               .y = y + Int(OuterRadius * Cos(((i + 1) / (nSides / 2)) * PI))
+               Select Case ColourType
+               Case Same
+                  .color = SameColour
+               Case OuterInner
+                  .color = OuterColour
+               Case StartFinish
+                  .color = BlendedColour
+               End Select
+               .rhw = 1
+               .specular = 0
+            Case 3
+               .x = x + Int(InnerRadius * Sin((i / (nSides / 2)) * PI))
+               .y = y + Int(InnerRadius * Cos((i / (nSides / 2)) * PI))
+              Select Case ColourType
+               Case Same
+                  .color = SameColour
+               Case OuterInner
+                  .color = InnerColour
+               Case StartFinish
+                  .color = BlendedColour
+               End Select
+               .rhw = 1
+               .specular = 0
+            Case 4
+               .x = x + Int(InnerRadius * Sin(((i + 1) / (nSides / 2)) * PI))
+               .y = y + Int(InnerRadius * Cos(((i + 1) / (nSides / 2)) * PI))
+               Select Case ColourType
+               Case Same
+                  .color = SameColour
+               Case OuterInner
+                  .color = InnerColour
+               Case StartFinish
+                  .color = BlendedColour
+               End Select
+               .rhw = 1
+               .specular = 0
+            Case 5
+               .x = x + Int(OuterRadius * Sin(((i + 1) / (nSides / 2)) * PI))
+               .y = y + Int(OuterRadius * Cos(((i + 1) / (nSides / 2)) * PI))
+              Select Case ColourType
+               Case Same
+                  .color = SameColour
+               Case OuterInner
+                  .color = OuterColour
+               Case StartFinish
+                  .color = BlendedColour
+               End Select
+               .rhw = 1
+               .specular = 0

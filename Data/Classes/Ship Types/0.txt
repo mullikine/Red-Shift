@@ -25,4 +25,4 @@ HyperspaceCruiseSpeed      800
 HyperspaceAccel            5
 DefaultGunTypes            3,1,1,-1,-1,4
 GunPositionsX              0,-12,12,-27,27,0
-GunPositionsY              57,17,17,-12,-12,0
+GunPositionsY              57,17,17,-12,-12,00

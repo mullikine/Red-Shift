@@ -12,4 +12,5 @@ iMaxExplosions          2000
 nBGStars                3000
 nStellarObjectImages    4
 iMaxShips               80
-InvertSpeakers          True
+InvertSpeakers          TrueShips               10
+InvertSpeakers          False

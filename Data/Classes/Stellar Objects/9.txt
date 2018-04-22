@@ -1,0 +1,15 @@
+Name                            Sam~World
+Kind                            0
+System                          7
+X                               0
+Y                               0
+Size                            600
+Image                           0
+SpinSpeed                       -0.005
+GravitationalFieldStrength      4
+GravGeometricRatio              0.999
+MaxGravityAcceleration          0.2
+DescriptionIndex                0
+// rebels = 1
+Government                      3
+Landable                        True

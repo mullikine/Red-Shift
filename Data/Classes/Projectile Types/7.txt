@@ -31,4 +31,4 @@ EffectiveRange      2000
 Sound               10
 Frequency           0
 Volume              0.3
-BlastVolume         0.4
+BlastVolume         0.4     0.8

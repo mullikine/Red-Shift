@@ -1,0 +1,12 @@
+ClassName           The~Ejaculator
+FireRate            60
+MaxAmmo             3
+ProjectileType      12
+PurchasePrice       250
+SellingPrice        150
+RechargeRate        10
+RechargePowerCost   10
+RandomBearingOffset 2
+Ballistic           False
+// KeySpace = 32 (&H20)
+KeyTrigger          32

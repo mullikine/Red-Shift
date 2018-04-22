@@ -389,3 +389,203 @@ Sub CleanUp()
    Call EndRender
 
 End Sub
+ .tu = 1
+      .tv = 0
+      
+   End With
+   
+   With TempVerts(2)
+      
+      .x = x + Width
+      .y = y + Height
+      .color = ColourBR
+      .rhw = 1
+      .specular = 0
+      .tu = 1
+      .tv = 1
+      
+   End With
+   
+   With TempVerts(3)
+      
+      .x = x
+      .y = y + Height
+      .color = ColourBL
+      .rhw = 1
+      .specular = 0
+      .tu = 0
+      .tv = 1
+      
+   End With
+   
+   With TempVerts(4)
+      
+      .x = x
+      .y = y
+      .color = ColourTL
+      .rhw = 1
+      .specular = 0
+      .tu = 0
+      .tv = 0
+      
+   End With
+   
+   If Filled Then
+      D3DDevice.SetTexture 0, Texture
+      D3DDevice.DrawPrimitiveUP D3DPT_TRIANGLEFAN, 2, TempVerts(0), Len(TempVerts(0))
+   End If
+   
+   If Border Then
+      D3DDevice.SetTexture 0, ViewImages(0)
+      D3DDevice.DrawPrimitiveUP D3DPT_LINESTRIP, 4, TempVerts(0), Len(TempVerts(0))
+   End If
+
+End Sub
+
+Function SlideEffect(ByRef pDestXYWH As XYWH, ByVal PixelsPerSecond As Single) As fRECT
+Dim fOffset As Single
+
+   With pDestXYWH
+   
+      fOffset = (Timer * PixelsPerSecond Mod .Height) / .Height
+   
+   End With
+   
+   With SlideEffect
+   
+      .Top = 0
+      .Bottom = 1
+      .Left = 0 + fOffset
+      .Right = pDestXYWH.Width / pDestXYWH.Height + fOffset
+      
+   End With
+
+End Function
+
+Function Pattern(ByRef pDestXYWH As XYWH, ByVal Align As eAlign) As fRECT
+   
+   With Pattern
+   
+      .Top = 0
+      .Bottom = 1
+      Select Case Align
+      Case Left_Align
+         .Left = 0
+         .Right = pDestXYWH.Width / pDestXYWH.Height
+      Case Right_Align
+         .Left = -pDestXYWH.Width / pDestXYWH.Height
+         .Right = 0
+      Case Else
+         .Left = 0
+         .Right = 1
+      End Select
+      
+   End With
+
+End Function
+
+Function LoadTexture(SrcFile As String, Transparent_Colour As Long) As Direct3DTexture8
+    
+    Set LoadTexture = D3DX.CreateTextureFromFileEx(D3DDevice, SrcFile, D3DX_DEFAULT, D3DX_DEFAULT, _
+                                                                            D3DX_DEFAULT, 0, DispMode.Format, _
+                                                                            D3DPOOL_MANAGED, D3DX_FILTER_POINT, _
+                                                                            D3DX_FILTER_POINT, Transparent_Colour, _
+                                                                            ByVal 0, ByVal 0)
+End Function 'D3DFMT_UNKNOWN
+
+Sub ClearAndBeginRender()
+
+   ' clear the device
+   D3DDevice.Clear 1, ByVal 0, D3DCLEAR_TARGET, mStars.BackColour, 1#, 0
+   
+   ' call begin scene
+   D3DDevice.BeginScene
+
+End Sub
+
+Sub EndRender(Optional hWndOveride As Long)
+
+   ' end the scene
+   D3DDevice.EndScene
+   
+   ' present the backbuffer to the screen
+   If frmDXForm.Visible Then D3DDevice.Present ByVal 0, ByVal 0, 0, ByVal 0
+
+End Sub
+
+Public Sub EnableBlendOne()
+   
+   D3DDevice.SetRenderState D3DRS_SRCBLEND, D3DBLEND_ONE
+   D3DDevice.SetRenderState D3DRS_DESTBLEND, D3DBLEND_ONE
+   
+   D3DDevice.SetRenderState D3DRS_ALPHABLENDENABLE, 1
+       
+End Sub
+
+Public Sub EnableBlendNormal()
+   
+   If AlphaMode Then
+      EnableBlendColour
+   Else
+      D3DDevice.SetRenderState D3DRS_SRCBLEND, D3DBLEND_SRCALPHA
+      D3DDevice.SetRenderState D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA
+      
+      D3DDevice.SetRenderState D3DRS_ALPHABLENDENABLE, 1
+   End If
+
+End Sub
+
+Public Sub EnableBlendColour()
+
+   D3DDevice.SetRenderState D3DRS_SRCBLEND, D3DBLEND_SRCCOLOR
+   D3DDevice.SetRenderState D3DRS_DESTBLEND, D3DBLEND_INVSRCCOLOR
+   
+   D3DDevice.SetRenderState D3DRS_ALPHABLENDENABLE, 1
+
+End Sub
+
+Public Sub EnableBlendInvColour()
+   
+   D3DDevice.SetRenderState D3DRS_SRCBLEND, D3DBLEND_INVSRCCOLOR
+   D3DDevice.SetRenderState D3DRS_DESTBLEND, D3DBLEND_INVDESTCOLOR
+   
+   D3DDevice.SetRenderState D3DRS_ALPHABLENDENABLE, 1
+       
+End Sub
+
+Sub EnableRadarBlend()
+
+   D3DDevice.SetRenderState D3DRS_SRCBLEND, D3DBLEND_SRCCOLOR
+   D3DDevice.SetRenderState D3DRS_DESTBLEND, D3DBLEND_ONE
+   
+   D3DDevice.SetRenderState D3DRS_ALPHABLENDENABLE, 1
+   
+End Sub
+
+Sub ChangeTextureFactor(ByVal Colour As Long)
+
+   If AlphaMode Then
+      D3DDevice.SetRenderState D3DRS_TEXTUREFACTOR, Colour
+      D3DDevice.SetTextureStageState 0, D3DTSS_ALPHAARG1, D3DTA_TFACTOR
+   End If
+   
+End Sub
+
+Sub DisableTextureFactor()
+
+   'D3DDevice.Reset D3DWindow
+       
+End Sub
+
+Public Sub DisableBlend()
+   
+   D3DDevice.SetRenderState D3DRS_ALPHABLENDENABLE, False
+           
+End Sub
+
+Sub CleanUp()
+
+   Call ClearAndBeginRender
+   Call EndRender
+
+End Sub

@@ -78,3 +78,19 @@ Sub CleanUp()
 
 End Sub
 
+
+   Initialise = False  'Return error
+   
+End Function
+
+Sub CleanUp()
+
+   On Local Error Resume Next
+   Set D3DDevice = Nothing
+   Set D3DX = Nothing
+   Set D3D = Nothing
+   Set Dx = Nothing
+   Debug.Print "Engine objects destroyed"
+
+End Sub
+

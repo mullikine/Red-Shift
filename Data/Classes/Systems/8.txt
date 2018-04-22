@@ -1,0 +1,7 @@
+Name                            Bulls~Eye~System
+X                               -2000
+Y                               200
+Galaxy                          0
+HyperspaceArriveDistance        10000
+HyperspaceDepartDistance        1000
+Government                      4

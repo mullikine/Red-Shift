@@ -212,3 +212,56 @@ Sub DoKeys()
    End With
    
 End Sub
+ggleFightersHot) = False
+         End If
+         
+         ' Switch ships
+         If Keys(keyJumpShip) Then
+            You.Ship = You.Ship + 1
+            If You.Ship > nShips Then You.Ship = 0
+            mStars.InitialPhysics
+            'Ships(You.Ship).ObjectiveType = vbNullString
+            Keys(keyJumpShip) = False
+         End If
+         
+         ' toggle cloak
+         If Keys(keyToggleCloak) Then
+            .CloakOn = Not .CloakOn
+            Keys(keyToggleCloak) = False
+         End If
+         
+         'Select stellar object
+         If Keys(keyNextPlanet) Then
+            .CurrentStellarObjectSelection = NextStellarObject
+            Keys(keyNextPlanet) = False
+         End If
+         
+         '\\\\\\\\\\\\\\\\\\\\\
+         
+         ' Cycle Select Relations
+         If Keys(keyCycleSelRelations) Then
+            SelectRelations = SelectRelations + 1
+            If SelectRelations = 5 Then SelectRelations = 0
+            Keys(keyCycleSelRelations) = False
+         End If
+         
+         ' Select closest ship
+         If Keys(keyClosestShip) Then
+            .CurrentShipSelection = ClosestShip(You.Ship, SelectRelations)
+            Keys(keyClosestShip) = False
+         End If
+         
+         '/////////////////////
+         
+         ' Chases selected ship
+         If Keys(keyChaseShip) And .CurrentShipSelection <> -1 Then
+            .ObjectiveType = "ChSh"
+            .ObjectiveIndex = .CurrentShipSelection
+            Keys(keyChaseShip) = False
+         End If
+            
+      End If
+   
+   End With
+   
+End Sub

@@ -1,0 +1,7 @@
+Name                            Grayling
+X                               -400
+Y                               200
+Galaxy                          0
+HyperspaceArriveDistance        10000
+HyperspaceDepartDistance        1000
+Government                      3

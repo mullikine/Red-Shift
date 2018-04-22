@@ -234,3 +234,14 @@ Function Playing() As Boolean
    Playing = oDMPerf.IsPlaying(oDMSeg, SegState)
 
 End Function
+ If
+
+End Sub
+
+Function Playing() As Boolean
+
+   If Not bInit Then Exit Function
+   
+   Playing = oDMPerf.IsPlaying(oDMSeg, SegState)
+
+End Function

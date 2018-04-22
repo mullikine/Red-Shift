@@ -58,3 +58,9 @@ Const SmallestRadius As Integer = 3
 
 End Sub
 
+, pX - pSize, pX + pSize), , , pColour
+      'DrawBasicCircle pX, pY, pSize, pColour
+   End If
+
+End Sub
+

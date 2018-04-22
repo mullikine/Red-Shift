@@ -10,4 +10,4 @@ RandomBearingOffset 3
 // False
 Ballistic           False
 // vbKeyShift = 16 (&H10)
-KeyTrigger          16
+KeyTrigger          166

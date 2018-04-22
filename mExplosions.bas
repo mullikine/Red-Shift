@@ -112,3 +112,22 @@ Public Sub CleanUp()
 
 End Sub
 
+nds.HearingDistance) / 2 + 0.5, 0
+      End If
+   End If
+
+End Sub
+
+Sub ChangeMax(ByVal nMax As Integer)
+
+    ReDim Preserve Explosions(nMax - 1)
+
+End Sub
+
+Public Sub CleanUp()
+
+    Erase ExplsnImages
+    Erase Explosions
+
+End Sub
+

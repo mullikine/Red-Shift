@@ -176,3 +176,9 @@ Private Sub Initialize_Game()
    End With
 
 End Sub
+StatusMenu.Init
+   Call SmallIncLoadStatus: mTabSelect.Init
+   Call SmallIncLoadStatus: mKeyboard.InitKeyConfig
+   Call SmallIncLoadStatus: mStars.InitialPhysics
+
+End Sub

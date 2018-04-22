@@ -189,3 +189,17 @@ Sub CleanUp()
     Erase txrFlares
 
 End Sub
+dStatus
+         Next j
+         
+      End With
+   Next i
+
+End Sub
+
+
+Sub CleanUp()
+
+    Erase txrFlares
+
+End Sub

@@ -555,3 +555,178 @@ Sub Reset(ByVal aShip As Integer)
 
 End Sub
 
+ As Integer, ByVal ToStellarObject As Integer) As Double
+
+   With Ships(FromShip)
+   
+      DistanceFromStellarObject = Sqr((.x - StellarObjects(ToStellarObject).x) ^ 2 + (.y - StellarObjects(ToStellarObject).y) ^ 2) - StellarObjects(ToStellarObject).Size / 2
+      '  - ShipTypes(.ShipType).Size / 2 - StellarObjects(ToStellarObject).Size / 2
+   End With
+
+End Function
+
+Function FuelToStellarObject(ByVal FromShip As Integer, ByVal ToStellarObject As Integer) As Double
+Dim DistanceToDepart As Long
+Dim DistanceFromSO As Long
+Dim HyperspaceFuel As Long
+Const JustToBeSafeConstant = 0.8 ' Ship isn't always at max speed
+
+   With Ships(FromShip)
+   
+      If .system = StellarObjects(ToStellarObject).system Then
+         ' Rational estimate
+         DistanceFromSO = DistanceFromStellarObject(FromShip, ToStellarObject)
+      Else
+         ' Rational estimate
+         DistanceToDepart = CartToMod(.x, .y)
+         If DistanceToDepart < Systems(.system).HyperspaceDepartDistance Then
+            DistanceToDepart = Systems(.system).HyperspaceDepartDistance - DistanceToDepart
+         Else
+            DistanceToDepart = 0
+         End If
+         
+         ' Actual
+         HyperspaceFuel = Sqr((Systems(StellarObjects(ToStellarObject).system).x - Systems(.system).x) ^ 2 + (Systems(StellarObjects(ToStellarObject).system).y - Systems(.system).x) ^ 2)
+         
+         ' Estimate
+         DistanceFromSO = Systems(StellarObjects(ToStellarObject).system).HyperspaceArriveDistance
+      End If
+      
+      FuelToStellarObject = HyperspaceFuel + (DistanceToDepart + DistanceFromSO) / (JustToBeSafeConstant * TopSpeed(.ShipType))
+      
+   End With
+
+End Function
+
+Function FuelToShip(ByVal FromShip As Integer, ByVal ToShip As Integer) As Double
+Dim DistanceToDepart As Long
+Dim DistFromShipInSys As Long
+Dim HyperspaceFuel As Long
+Const JustToBeSafeConstant = 0.8 ' Ship isn't always at max speed
+
+   With Ships(FromShip)
+   
+      If .system = Ships(ToShip).system Then
+         ' Rational estimate
+         DistFromShipInSys = DistanceFromShipToShip(FromShip, ToShip)
+      Else
+         ' Rational estimate
+         DistanceToDepart = CartToMod(.x, .y)
+         If DistanceToDepart < Systems(.system).HyperspaceDepartDistance Then
+            DistanceToDepart = Systems(.system).HyperspaceDepartDistance - DistanceToDepart
+         Else
+            DistanceToDepart = 0
+         End If
+         
+         ' Actual
+         HyperspaceFuel = Sqr((Systems(Ships(ToShip).system).x - Systems(.system).x) ^ 2 + (Systems(Ships(ToShip).system).x - Systems(.system).x) ^ 2)
+         
+         ' Estimate
+         DistFromShipInSys = Systems(Ships(ToShip).system).HyperspaceArriveDistance
+      End If
+      
+      FuelToShip = HyperspaceFuel + (DistanceToDepart + DistFromShipInSys) / (JustToBeSafeConstant * TopSpeed(.ShipType))
+      
+   End With
+
+End Function
+
+Function ClosestStellarObjectByFuel(ByVal pRefShip As Integer, Optional ByVal Government As Integer = -1, Optional LandableRequired As Boolean = True) As Integer
+Dim FuelReq As Long
+Dim LeastFuelReq As Long
+Dim iSO As Integer
+
+   ClosestStellarObjectByFuel = -1
+   LeastFuelReq = -1
+   
+   For iSO = 0 To UBound(StellarObjects)
+      If ((Government > -1 And StellarObjects(iSO).Government = Government) Or Government = -1) Then
+         If ((StellarObjects(iSO).Landable And LandableRequired) Or Not LandableRequired) Then
+            FuelReq = FuelToStellarObject(pRefShip, iSO)
+            If (FuelReq < LeastFuelReq) Or LeastFuelReq = -1 Then
+               LeastFuelReq = FuelReq
+               ClosestStellarObjectByFuel = iSO
+            End If
+         End If
+      End If
+   Next iSO
+
+End Function
+
+Function ClosestSO(ByVal pRefShip As Integer, Optional ByVal toGovernment As Integer = -5, Optional toRelations As eRelations = -2, Optional LandableRequired As Boolean = True, Optional ByVal fromGovernment As Integer = -5) As Integer
+Dim iClosestSO As Integer
+Dim iClosestSODist As Long
+Dim iNextSODist As Long
+Dim iSO As Integer
+
+' ToRelations can only be called when 2 government properties are filled
+
+   iClosestSO = -1
+   iClosestSODist = -1
+   
+   For iSO = 0 To UBound(StellarObjects)
+      If (StellarObjects(iSO).system = Ships(pRefShip).system) Then
+         ' -1 is no government
+         ' If the planet is of the correct government ( -1 or > -1)
+         If ((toGovernment > -2 And StellarObjects(iSO).Government = toGovernment) Or toGovernment = -5) Then
+         
+            ' if both governments are actual governments
+            If StellarObjects(iSO).Government > -1 And fromGovernment > -1 Then
+               ' consider relations
+               If ((toRelations > -1 And GovRelations(fromGovernment, StellarObjects(iSO).Government) = toRelations) Or toRelations = -1) Then
+                  If ((StellarObjects(iSO).Landable And LandableRequired) Or Not LandableRequired) Then
+                     GoTo ConsiderPlanet
+                  End If
+               End If
+            End If
+         End If
+      End If
+NextiSO:
+   Next iSO
+   
+   ClosestSO = iClosestSO
+   
+   Exit Function
+ConsiderPlanet:
+
+   iNextSODist = DistanceShipToSO(pRefShip, iSO)
+   If iNextSODist < iClosestSODist Or iClosestSO = -1 Then
+      iClosestSO = iSO
+      iClosestSODist = iNextSODist
+   End If
+   
+   GoTo NextiSO
+
+End Function
+
+Function ClosestShipByFuel(ByVal pRefShip As Integer, Optional ByVal pRelations As eRelations = eRelations.Neutral) As Integer
+Dim FuelReq As Long
+Dim LeastFuelReq As Long
+Dim iShip As Integer
+
+   ClosestShipByFuel = -1
+   LeastFuelReq = -1
+   
+   For iShip = 0 To UBound(Ships)
+      If ShipRelations(pRefShip, iShip) = pRelations Then
+         FuelReq = FuelToShip(pRefShip, iShip)
+         If (FuelReq < LeastFuelReq) Or LeastFuelReq = -1 Then
+            LeastFuelReq = FuelReq
+            ClosestShipByFuel = iShip
+         End If
+      End If
+   Next iShip
+
+End Function
+
+Sub Reset(ByVal aShip As Integer)
+
+   With Ships(aShip)
+      
+      .CurrentShipSelection = -1
+      .CurrentStellarObjectSelection = -1
+      
+   End With
+
+End Sub
+

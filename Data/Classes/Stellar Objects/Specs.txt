@@ -1,1 +1,1 @@
-nStellarObjects         8
+nStellarObjects         81

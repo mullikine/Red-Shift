@@ -39,3 +39,6 @@ Sub Init()
    mInitStaticTypes.Init
 
 End Sub
+nitStaticTypes.Init
+
+End Sub

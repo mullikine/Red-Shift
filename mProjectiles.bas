@@ -375,3 +375,23 @@ Function Image(ByVal ProjectileType As Integer, ByVal i0_360 As Integer) As Dire
    Set Image = ProjectileImageSets(ProjectileTypes(ProjectileType).ProjectileImage).Image(i0_360)
 
 End Function
+jectileType).JetstreamInitSize, _
+            '   ProjectileTypes(.ProjectileType).JetstreamDeltaSize, ProjectileTypes(.ProjectileType).JetstreamLastTime, SmokeEx, 0, &HFF606060
+         Next i
+      End If
+      
+   End With
+
+End Sub
+
+Function Image(ByVal ProjectileType As Integer, ByVal i0_360 As Integer) As Direct3DBaseTexture8
+
+   If i0_360 > 180 Then
+      i0_360 = 180 - (i0_360 - 180)
+   End If
+   
+   i0_360 = i0_360 / ProjectileImageSets(ProjectileTypes(ProjectileType).ProjectileImage).DeltaDegs
+   
+   Set Image = ProjectileImageSets(ProjectileTypes(ProjectileType).ProjectileImage).Image(i0_360)
+
+End Function

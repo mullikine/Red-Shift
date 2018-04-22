@@ -102,3 +102,11 @@ Sub LoadPrefs(ByRef aGamePrefs As tGamePrefs)
    End With
    
 End Sub
+ mSounds.bSFXon = .bSoundsOn
+      mMusic.bMusicOn = .bMusicOn
+      mShips.iMaxShips = .iMaxShips
+      mSounds.InvertSpeakers = .bInvertSpeakers
+      
+   End With
+   
+End Sub
