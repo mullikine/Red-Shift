@@ -1,0 +1,7 @@
+* Just an EV clone I made at school
+
+* Build
+Visual Basic 6
+
+* Thanks
+** Lachlan for the cool midi music
