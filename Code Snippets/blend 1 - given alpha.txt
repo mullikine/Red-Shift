@@ -1,0 +1,12 @@
+// Select the texture you want to alpha-blend
+pDev->SetTexture(0, YourTexture);
+
+// Set blending stages for using blend factor
+pDev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+pDev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_BLENDFACTOR);
+pDev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVBLENDFACTOR);
+
+// The following is the blending factor, use values from 0 to 255
+// A value of 0 will make image transparent and a value of 255
+// will make it opaque.
+pDev->SetRenderState(D3DRS_BLENDFACTOR, 150);

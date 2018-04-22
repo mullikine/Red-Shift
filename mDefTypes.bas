@@ -288,3 +288,8 @@ Type tShipType
 ' Other
     Proximity As Integer
 End Type
+Radar
+   RadarSearchDegs As Integer
+   RadarSpeed As Integer
+   RadarRange As Long
+End Type

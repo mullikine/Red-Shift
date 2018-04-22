@@ -200,3 +200,8 @@ Public Declare Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
 
 Public cpos As POINTAPI
 
+g, ByVal yPoint As Long) As Long
+Public Declare Function GetCursorPos Lib "user32" (lpPoint As POINTAPI) As Long
+
+Public cpos As POINTAPI
+

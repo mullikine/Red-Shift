@@ -41,4 +41,9 @@ If Not Control
 	Tab	Next Stellar Object
 	A	Cycle Select Relations
 	S	Select Closest Ship of Current Select Relations
-	/	Chase Selected Ship
+	/	Chase Selected Shipdown Control key
+	D	Self Destruct
+
+	S	Next Ship
+	Q	Select Selected Ship's Fleet Master
+	F	Make selected ship hostile

@@ -46,3 +46,16 @@ End Sub
 End With
 
 End Sub
+itor.ProcCount, 1, 108, 14, 14, White
+      DrawText "nProjectiles: " & nProjectiles, 1, 132, 14, 14, White
+      DrawText "nShips: " & nShips & ", nShipRel: " & UBound(ShipRelations, 1), 1, 146, 14, 14, White
+      DrawText "nGuns: " & nGuns, 1, 184, 14, 14, White
+      
+      'EnableBlendColour
+      
+      'DrawRectangle ViewImages(0), ScreenDims.Width / 2 - Len("PAUSED") * 18 - 6, ScreenDims.Height / 2 - 18 - 6, Len("PAUSED") * 36 + 12, 48, True, True, Blue, Red, Red, Blue
+      'DrawText "PAUSED", ScreenDims.Width / 2 - Len("PAUSED") * 18, ScreenDims.Height / 2 - 18, 36, 36, Yellow
+      
+   End With
+
+End Sub

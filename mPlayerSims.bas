@@ -129,3 +129,21 @@ Function PlayerSimByName(ByVal PlayerSimname As String) As Integer
    Next j
 
 End Function
+)
+      .x = x
+      .y = y
+
+   End With
+
+End Sub
+
+Function PlayerSimByName(ByVal PlayerSimname As String) As Integer
+
+   PlayerSimByName = -1
+   For j = 0 To nPlayerSims
+      If PlayerSims(j).Name = PlayerSimname Then
+         PlayerSimByName = j
+      End If
+   Next j
+
+End Function

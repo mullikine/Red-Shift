@@ -1,0 +1,35 @@
+ClassName           large~laser~blast
+WeaponClass         Energy
+ProjectileImage     4
+MaxFuel             60
+Acceleration        -0.6
+// When homing locked supply extra boost
+HLAccelBoost        0
+TractorForce        -1.0
+SpinAcceleration    0
+SpinFrictionRatio   0
+TerminalProximity   10
+StartTimeTillHot    1
+ShieldDamage        100
+HullDamage          40
+Size                50
+BlastExists         True
+// Size / 2
+InitialBlastSize    12
+DeltaBlastSize      1
+BlastTimeLength     1
+FrictionRatio       1
+Homing              False
+LockOnRange         0
+//green
+Colour              65280
+InitialVelocity     100
+JetScatter          -1
+JetInitialColour    -1
+JetFinalColour      -1
+JetLastTime         -1
+EffectiveRange      2000
+Sound               9
+Frequency           100
+Volume              0.5
+BlastVolume         0.1

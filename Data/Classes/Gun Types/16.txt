@@ -1,0 +1,12 @@
+ClassName           Heavy~repulsor~beam
+FireRate            2
+MaxAmmo             1
+ProjectileType      14
+PurchasePrice       6000
+SellingPrice        5000
+RechargeRate        1
+RechargePowerCost   6
+RandomBearingOffset 0
+Ballistic           True
+// KeyMoreThan = 188 (&HBE)
+KeyTrigger          190

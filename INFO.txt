@@ -37,4 +37,25 @@ PLAN:
   Game editor
   Trading
 
+=============================================================eapons
+  Species
+  Improved HUD
+
+TUNING:
+  Optimised code and halved EXE build size
+  Improved refueling AI
+  Improved rocket smoke and explosions
+  Improved SFX
+  Integrated menu screens
+  
+
+PLAN:
+  Relations bugs
+  Governmental AI
+  AI Tolerance
+  Game editor
+  Trading
+
+  refer to todo list
+
 =============================================================

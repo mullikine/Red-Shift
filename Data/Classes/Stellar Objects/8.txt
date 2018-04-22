@@ -12,4 +12,4 @@ MaxGravityAcceleration          0.2
 DescriptionIndex                0
 // rebels = 1
 Government                      2
-Landable                        Trueue
+Landable                        Trueuee

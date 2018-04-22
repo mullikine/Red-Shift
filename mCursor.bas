@@ -87,3 +87,21 @@ Private Sub Class_Initialize()
 
 End Sub
 
+Time - LatentTime) / FadeTime, 1, 0))
+   'DrawBasicCircle X, Y, 5, LightRed, 16, D3DPT_LINESTRIP
+
+End Sub
+
+
+Sub Init()
+
+   ReturnValue = GetCursorPos(Pos)
+   LatentTime = 2
+   FadeTime = 1
+   LastMoveTime = Timer
+   
+   'pVisible = True
+   'RefreshCursor
+
+End Sub
+

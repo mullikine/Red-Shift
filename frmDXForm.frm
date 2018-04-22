@@ -78,3 +78,11 @@ End Sub
    End If
 
 End Sub
+ate Sub tmrActive_Timer()
+
+   If Not GetActiveWindow = Me.hWnd Then
+      bMenu = False
+      bRunning = False
+   End If
+   
+End Sub

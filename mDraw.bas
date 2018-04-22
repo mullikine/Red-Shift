@@ -589,3 +589,141 @@ Sub CleanUp()
    Call EndRender
 
 End Sub
+dth / pDestXYWH.Height
+      Case Right_Align
+         .Left = -pDestXYWH.Width / pDestXYWH.Height
+         .Right = 0
+      Case Else
+         .Left = 0
+         .Right = 1
+      End Select
+      
+   End With
+
+End Function
+
+Function LoadTexture(SrcFile As String, Transparent_Colour As Long) As Direct3DTexture8
+    
+    Set LoadTexture = D3DX.CreateTextureFromFileEx(D3DDevice, SrcFile, D3DX_DEFAULT, D3DX_DEFAULT, _
+                                                                            D3DX_DEFAULT, 0, DispMode.Format, _
+                                                                            D3DPOOL_MANAGED, D3DX_FILTER_POINT, _
+                                                                            D3DX_FILTER_POINT, Transparent_Colour, _
+                                                                            ByVal 0, ByVal 0)
+End Function 'D3DFMT_UNKNOWN
+
+Sub ClearAndBeginRender()
+
+   ' clear the device
+   D3DDevice.Clear 1, ByVal 0, D3DCLEAR_TARGET, mStars.BackColour, 1#, 0 ' D3DColorRGBA(0, 0, 0, 0)
+   
+   ' call begin scene
+   D3DDevice.BeginScene
+
+End Sub
+
+Sub EndRender(Optional hWndOveride As Long)
+
+   ' end the scene
+   D3DDevice.EndScene
+   
+   ' present the backbuffer to the screen
+   If frmDXForm.Visible Then D3DDevice.Present ByVal 0, ByVal 0, 0, ByVal 0
+
+End Sub
+
+Public Sub EnableBlendOne()
+   
+   D3DDevice.SetRenderState D3DRS_SRCBLEND, D3DBLEND_ONE
+   D3DDevice.SetRenderState D3DRS_DESTBLEND, D3DBLEND_ONE
+   
+   D3DDevice.SetRenderState D3DRS_ALPHABLENDENABLE, 1
+       
+End Sub
+
+Public Sub EnableBlendAlpha()
+   
+   D3DDevice.SetRenderState D3DRS_SRCBLEND, D3DBLEND_SRCALPHA
+   D3DDevice.SetRenderState D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA
+   
+   D3DDevice.SetRenderState D3DRS_ALPHABLENDENABLE, 1
+
+End Sub
+
+Public Sub EnableBlendNormal()
+   
+   If AlphaMode Then
+      EnableBlendColour
+   Else
+      D3DDevice.SetRenderState D3DRS_SRCBLEND, D3DBLEND_SRCALPHA
+      D3DDevice.SetRenderState D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA
+      
+      D3DDevice.SetRenderState D3DRS_ALPHABLENDENABLE, 1
+   End If
+
+End Sub
+
+Public Sub EnableBlendColour()
+
+   D3DDevice.SetRenderState D3DRS_SRCBLEND, D3DBLEND_SRCCOLOR
+   D3DDevice.SetRenderState D3DRS_DESTBLEND, D3DBLEND_INVSRCCOLOR
+   
+   D3DDevice.SetRenderState D3DRS_ALPHABLENDENABLE, 1
+
+End Sub
+
+Public Sub EnableBlendInvColour()
+   
+   D3DDevice.SetRenderState D3DRS_SRCBLEND, D3DBLEND_INVSRCCOLOR
+   D3DDevice.SetRenderState D3DRS_DESTBLEND, D3DBLEND_INVDESTCOLOR
+   
+   D3DDevice.SetRenderState D3DRS_ALPHABLENDENABLE, 1
+       
+End Sub
+
+Sub EnableRadarBlend()
+
+   D3DDevice.SetRenderState D3DRS_SRCBLEND, D3DBLEND_SRCCOLOR
+   D3DDevice.SetRenderState D3DRS_DESTBLEND, D3DBLEND_ONE
+   
+   D3DDevice.SetRenderState D3DRS_ALPHABLENDENABLE, 1
+   
+End Sub
+
+Sub EnableBlendFactor(ByVal Factor As Integer)
+
+   D3DDevice.SetRenderState D3DRS_SRCBLEND, D3DBLEND_BLENDFACTOR
+   D3DDevice.SetRenderState D3DRS_DESTBLEND, D3DBLEND_INVBLENDFACTOR
+   
+   D3DDevice.SetRenderState D3DRS_ALPHABLENDENABLE, 1
+   
+   D3DDevice.SetRenderState D3DRS_BLENDFACTOR, Factor
+
+End Sub
+
+Sub ChangeTextureFactor(ByVal Colour As Long)
+
+   If AlphaMode Then
+      D3DDevice.SetRenderState D3DRS_TEXTUREFACTOR, Colour
+      D3DDevice.SetTextureStageState 0, D3DTSS_ALPHAARG1, D3DTA_TFACTOR
+   End If
+   
+End Sub
+
+Sub DisableTextureFactor()
+
+   'D3DDevice.Reset D3DWindow
+       
+End Sub
+
+Public Sub DisableBlend()
+   
+   D3DDevice.SetRenderState D3DRS_ALPHABLENDENABLE, False
+           
+End Sub
+
+Sub CleanUp()
+
+   Call ClearAndBeginRender
+   Call EndRender
+
+End Sub

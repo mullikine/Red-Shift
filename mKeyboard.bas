@@ -265,3 +265,77 @@ ggleFightersHot) = False
    End With
    
 End Sub
+Selection
+            Keys(keyChaseShip) = False
+         End If
+            
+      End If
+   
+   End With
+   
+End Sub
+
+Sub DoMenuKeys()
+Const ScrollLatency As Single = 0.2
+Static ScrollDownTimer As Single
+Static ScrollUpTimer As Single
+
+   With You
+   
+      ' Outside of Control Key scope
+      '------------------------------
+      
+      ' Scroll Down
+      If Keys(vbKeyDown) Then
+         If ScrollDownTimer < Timer - ScrollLatency Then
+            mGame.iMenuSelectedShip = mGame.iMenuSelectedShip + 1
+            If mGame.iMenuSelectedShip > UBound(PlayerSims) Then mGame.iMenuSelectedShip = 0
+            ScrollDownTimer = Timer
+            mSounds.Play sndLaser
+         End If
+      End If
+      
+      ' Scroll Up
+      If Keys(vbKeyUp) Then
+         If ScrollUpTimer < Timer - ScrollLatency Then
+            mGame.iMenuSelectedShip = mGame.iMenuSelectedShip - 1
+            If mGame.iMenuSelectedShip < 0 Then mGame.iMenuSelectedShip = UBound(PlayerSims)
+            ScrollUpTimer = Timer
+            mSounds.Play sndPhaser
+         End If
+      End If
+      
+      ' Choose random sim
+      If Keys(vbKeyR) Then
+         PlayerSim = PlayerSims(Rnd * UBound(PlayerSims))
+         bMenu = False
+         bRunning = True
+      End If
+      
+      ' Choose desired sim
+      If Keys(vbKeyReturn) Then
+         PlayerSim = PlayerSims(mGame.iMenuSelectedShip)
+         bMenu = False
+         bRunning = True
+         mSounds.Play sndSelect
+      End If
+      
+      ' Quit
+      If Keys(keyQuit) Then
+         bMenu = False
+         bRunning = False
+         Keys(keyQuit) = False
+      End If
+      
+      ' Inside of Control Key scope
+      '------------------------------
+      
+      If Keys(vbKeyControl) Then
+         
+      Else
+            
+      End If
+   
+   End With
+   
+End Sub

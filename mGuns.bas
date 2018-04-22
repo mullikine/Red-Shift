@@ -38,3 +38,29 @@ Function NewGun(ByVal GunType As Integer, Optional ByVal AmmoRemaining As Intege
    NewGun = pRefGunOverwrite
 
 End Function
+    GoTo GotRef
+   End If
+   
+   For iChooser = 0 To nGuns
+      If Guns(iChooser).Exists = False Then GoTo GotRef
+   Next iChooser
+   If iChooser = nGuns Then MsgBox "iChooser = nguns"
+NewGunSlot:
+   nGuns = nGuns + 1
+   ReDim Preserve Guns(nGuns) As tGun
+GotRef:
+   NewGun = iChooser
+   
+   With Guns(NewGun)
+   
+      .GunType = GunType
+      If AmmoRemaining = -2 Then
+         .AmmoRemaining = GunTypes(GunType).MaxAmmo
+      Else
+         .AmmoRemaining = AmmoRemaining
+      End If
+      .Exists = True
+
+   End With
+
+End Function

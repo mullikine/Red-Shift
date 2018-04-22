@@ -435,3 +435,24 @@ Function ACsc(Value As Double) As Double
         ACsc = 1.5707963267949 * Sgn(Value)
     End If
 End Function
+d by a single call
+    '            ACsc = ASin(1 / value)
+    If Abs(Value) <> 1 Then
+        ACsc = Atn((1 / Value) / Sqr(1 - 1 / (Value * Value)))
+    Else
+        ACsc = 1.5707963267949 * Sgn(Value)
+    End If
+End Function
+
+' angle which is greater than angle1 and smaller than angle2
+
+Function BetweenDegs(ByVal AngleLeft As Single, ByVal AngleRight As Single, AngleMiddle As Single) As Boolean
+
+   If AngleRight > AngleLeft Then
+      If AngleMiddle > AngleLeft And AngleMiddle < AngleRight Then BetweenDegs = True
+   Else
+      If AngleMiddle > AngleLeft Or AngleMiddle < AngleRight Then BetweenDegs = True
+   End If
+   
+
+End Function

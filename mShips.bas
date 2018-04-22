@@ -1651,3 +1651,23 @@ Dim Distance As Single
    Next iStellarObject
 
 End Function
+on As Rect2) As Pol2
+Dim iStellarObject As Integer
+Dim GravityTemp As Single
+Dim Distance As Single
+   
+   For iStellarObject = 0 To UBound(StellarObjects)
+      With StellarObjects(iStellarObject)
+         If .system = system Then
+            If DistanceBetween(NewRect2(.X, .Y), Location) < .Size / 2 Then
+               NetGravityAt = NewPol2(0, 0)
+               Exit Function ' there is definitely no force of gravity here
+            End If
+            Distance = DistanceBetween(Location, NewRect2(.X, .Y))
+            GravityTemp = BoundMax(.GravitationalFieldStrength / (Distance / 1000) ^ 2, .MaxGravityAcceleration)
+            NetGravityAt = Pol2Pol2Add(NetGravityAt, NewPol2(GravityTemp, CartToArg(.X - Location.X, .Y - Location.Y)))
+         End If
+      End With
+   Next iStellarObject
+
+End Function

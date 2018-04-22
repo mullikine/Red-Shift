@@ -1,0 +1,14 @@
+Name                            Midori~Central
+Kind                            0
+System                          9
+X                               -100
+Y                               -100
+Size                            726
+Image                           6
+SpinSpeed                       0.005
+GravitationalFieldStrength      0.3
+GravGeometricRatio              0.999
+MaxGravityAcceleration          0.2
+DescriptionIndex                0
+Government                      5
+Landable                        True

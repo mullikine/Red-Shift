@@ -167,3 +167,47 @@ Function AddfRECT(ByRef pRECT1 As fRECT, ByRef pRECT2 As fRECT) As fRECT
    End With
 
 End Function
+eight = pXYWH1.Height * pXYWH2.Height
+      
+   End With
+
+End Function
+
+Function AddXYWH(ByRef pXYWH1 As XYWH, ByRef pXYWH2 As XYWH) As XYWH
+
+   With AddXYWH
+   
+      .X = pXYWH1.X + pXYWH2.X
+      .Y = pXYWH1.Y + pXYWH2.Y
+      .Width = pXYWH1.Width + pXYWH2.Width
+      .Height = pXYWH1.Height + pXYWH2.Height
+      
+   End With
+
+End Function
+
+Function MultfRECT(ByRef pRECT1 As fRECT, ByRef pRECT2 As fRECT) As fRECT
+
+   With MultfRECT
+   
+      .Bottom = pRECT1.Bottom * pRECT2.Bottom
+      .Left = pRECT1.Left * pRECT2.Left
+      .Right = pRECT1.Right * pRECT2.Right
+      .Top = pRECT1.Top * pRECT2.Top
+      
+   End With
+
+End Function
+
+Function AddfRECT(ByRef pRECT1 As fRECT, ByRef pRECT2 As fRECT) As fRECT
+
+   With AddfRECT
+   
+      .Bottom = pRECT1.Bottom + pRECT2.Bottom
+      .Left = pRECT1.Left + pRECT2.Left
+      .Right = pRECT1.Right + pRECT2.Right
+      .Top = pRECT1.Top + pRECT2.Top
+      
+   End With
+
+End Function

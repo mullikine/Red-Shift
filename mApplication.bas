@@ -100,3 +100,11 @@ Const LastLoadingPosition As Integer = 507
    Debug.Print iLoadingPosition
 
 End Sub
+/ 2), LoadingDims.Y - 20, 12, 12, White, 1
+   
+   'DrawCircle ScreenDims.Width / 2, ScreenDims.Height / 2, 50, 20, , StartFinish, , , , Red, 0, , 0, Int(360 * (iLoadingPosition / LastLoadingPosition))
+   
+   EndRender 'endscene and present
+   
+   Debug.Print "Main Load: " & iLoadingPosition
+End Sub

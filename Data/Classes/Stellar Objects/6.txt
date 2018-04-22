@@ -12,4 +12,4 @@ MaxGravityAcceleration          10000
 DescriptionIndex                0
 // No Government = 2
 Government                      -1
-Landable                        False
+Landable                        Falsese

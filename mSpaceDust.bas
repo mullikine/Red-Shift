@@ -129,3 +129,22 @@ Public Sub CleanUp()
 End Sub
 
 
+  For i = 0 To intensity * SpaceZoom
+      RandMod = ToRadians(Rnd * 360)
+      MakeDust X, Y, system, time, InitialColour, FinalColour, Rnd * Sqr(intensity) * Cos(RandMod), Rnd * Sqr(intensity) * Sin(RandMod)
+   Next i
+End Sub
+
+Sub ChangeMax(ByVal nMax As Integer)
+
+    ReDim Preserve Dusts(nMax - 1)
+
+End Sub
+
+Public Sub CleanUp()
+
+    Erase Dusts
+
+End Sub
+
+

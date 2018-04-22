@@ -12,4 +12,4 @@ MaxGravityAcceleration          0.4
 DescriptionIndex                0
 // confed = 0
 Government                      0
-Landable                        True      True
+Landable                        True      Trueue

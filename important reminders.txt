@@ -1,1 +1,6 @@
 drawxywh modified so that width-1 and height-1
+
+
+
+remember:
+drawtext Italics("")

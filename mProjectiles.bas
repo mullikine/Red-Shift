@@ -395,3 +395,4 @@ Function Image(ByVal ProjectileType As Integer, ByVal i0_360 As Integer) As Dire
    Set Image = ProjectileImageSets(ProjectileTypes(ProjectileType).ProjectileImage).Image(i0_360)
 
 End Function
+

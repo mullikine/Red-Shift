@@ -149,3 +149,27 @@ End Function
 o + Col(1).alpha * (1 - Ratio)), CByte(Col(0).Reserved * Ratio + Col(1).Reserved * (1 - Ratio))))
 
 End Function
+ingle
+
+    AverageSaturation = (CInt(Colour.alpha) + CInt(Colour.Blue) + CInt(Colour.Green) + CInt(Colour.Red)) / 4
+
+End Function
+
+Function RGBAToLong(ByRef Colour As RGBA) As Long
+
+   With Colour
+   
+      RGBAToLong = D3DColorRGBA(.Red, .Green, .Blue, .alpha) ' this rgb function is actually back to front!!. DX8 is wrong, strangely
+      
+   End With
+
+End Function
+
+Function Blend(ByVal Colour1 As Long, ByVal Colour2 As Long, ByVal Ratio As Single) As Long
+Dim Col(1) As RGBA
+
+   Col(0) = LongToRGBA(Colour1)
+   Col(1) = LongToRGBA(Colour2)
+   Blend = RGBAToLong(NewRGBA(CByte(Col(0).Red * Ratio + Col(1).Red * (1 - Ratio)), CByte(Col(0).Green * Ratio + Col(1).Green * (1 - Ratio)), CByte(Col(0).Blue * Ratio + Col(1).Blue * (1 - Ratio)), CByte(Col(0).alpha * Ratio + Col(1).alpha * (1 - Ratio)), CByte(Col(0).Reserved * Ratio + Col(1).Reserved * (1 - Ratio))))
+
+End Function

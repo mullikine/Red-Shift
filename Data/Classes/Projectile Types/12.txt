@@ -31,4 +31,4 @@ EffectiveRange      400
 Sound               8
 Frequency           2000
 Volume              0.2
-BlastVolume         0.1
+BlastVolume         0.1olume         0.1

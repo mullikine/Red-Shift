@@ -1,0 +1,20 @@
+make heads up display more intuitive and look nice
+make ships more intelligent
+make homing weapons home better
+stop attack self bug. with your allies being enemies with other allies of yours and you attacking allies of your own allies, causing allies to attack you (& visa-versa) and you to attack yourself.
+make hyperspace graphics
+add align key to slow down ship from turning
+
+make explosions look more like cauliflower and less symmetrical
+
+stop ships being made while paused
+
+stop tabselect from remaining targeted to ships that have hyperspaced out of the system. the little arrow continues to point at the ship as if it were flying around in the smae system
+
+
+
+
+--------------------------------
+
+
+formations

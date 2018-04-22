@@ -1,0 +1,19 @@
+
+            White = 16777215, _
+            DarkBlue = 127, _
+            LightBlue = 8355839, _
+            Blue = 255, _
+            DarkCyan = 32639, _
+            LightCyan = 8388607, _
+            Cyan = 65535, _
+            DarkGreen = 32512, _
+            LightGreen = 8388479, _
+            Green = 65280, _
+            DarkRed = 8323072, _
+            LightRed = 16744319, _
+            Red = 16711680, _
+            Purple = 16711935, _
+            Yellow = 16776960, _
+            Grey = 8355711, _
+            NavyGrey = &H6A5A4A, _
+            DarkGrey = 4144959

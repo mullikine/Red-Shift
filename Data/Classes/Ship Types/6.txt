@@ -26,3 +26,6 @@ HyperspaceAccel            5
 DefaultGunTypes            3,0,0,-1,-1,-1
 GunPositionsX              0,-5,5,0,0,0
 GunPositionsY              8,8,8,0,0,0
+RadarSearchDegs            250
+RadarSpeed                 200
+RadarRange                 10000

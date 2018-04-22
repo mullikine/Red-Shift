@@ -98,3 +98,13 @@ Sub DrawYou()
    DrawCircle mWinDims.MapDims.x + mWinDims.MapDims.Width / 2, mWinDims.MapDims.y + mWinDims.MapDims.Height / 2, YouMapRadius, &HFF60FF60, 18
 
 End Sub
+, True
+   DrawXYWH ViewImages(0), MapRightBarDims, Black, DarkGrey, CT_Rect_LeftRight, False, True
+
+End Sub
+
+Sub DrawYou()
+
+   DrawBasicCircle mWinDims.MapDims.X + mWinDims.MapDims.Width / 2, mWinDims.MapDims.Y + mWinDims.MapDims.Height / 2, YouMapRadius, &HFF60FF60, 18
+
+End Sub

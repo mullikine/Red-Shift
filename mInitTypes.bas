@@ -224,3 +224,15 @@ Dim aInput() As String
 
 End Sub
 
+Val(aInput(1))
+            aInput = Tokenize(ReadStr(1), " ")
+            .Volume = Val(aInput(1))
+            aInput = Tokenize(ReadStr(1), " ")
+            .BlastVolume = Val(aInput(1))
+         Close #1
+         
+      End With
+   Next i
+
+End Sub
+

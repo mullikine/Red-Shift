@@ -1,0 +1,8 @@
+Name           Midories
+Species        1
+Rel0           1
+Rel1           1
+Rel2           1
+Rel3           1
+Rel4           1
+Rel5           2

@@ -76,3 +76,6 @@ lationColour(GovRelations(StellarObjects(RefStellarObject).Government, Ships(You
     Next RefStellarObject
 
 End Sub
+tellarObject
+
+End Sub

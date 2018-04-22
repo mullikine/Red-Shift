@@ -1,0 +1,7 @@
+Name                            Midori~System
+X                               -4000
+Y                               -300
+Galaxy                          0
+HyperspaceArriveDistance        10000
+HyperspaceDepartDistance        1000
+Government                      5
